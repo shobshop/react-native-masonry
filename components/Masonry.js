@@ -137,7 +137,7 @@ export default class Masonry extends Component {
 
 		this.setState({
 			dimensions: {
-				width,
+				width: width - (this.props.containerPadding || 0) * 2,
 				height
 			}
 		});
@@ -198,7 +198,7 @@ export default class Masonry extends Component {
 		return (
 		<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
 		<ListView
-			contentContainerStyle={styles.masonry__container}
+			contentContainerStyle={[styles.masonry__container, this.props.containerPadding ? { padding: this.props.containerPadding } : null]}
 			dataSource={this.state.dataSource}
 			enableEmptySections
 			scrollRenderAheadDistance={100}
@@ -214,6 +214,7 @@ export default class Masonry extends Component {
 				customImageComponent={this.props.customImageComponent}
 				customImageProps={this.props.customImageProps}
 				spacing={this.props.spacing}
+				gutterSize={this.props.gutterSize}
 				key={`RN-MASONRY-COLUMN-${rowID}`} />
 			)}
 			refreshControl={this.props.refreshControl} />

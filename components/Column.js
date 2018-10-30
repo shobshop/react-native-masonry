@@ -65,7 +65,7 @@ export default class Column extends Component {
 
 		// The gutter is 1% of the available view width
 		const gutterBase = width / 100;
-		const gutterSize = gutterBase * this.props.spacing;
+		const gutterSize = this.props.gutterSize || (gutterBase * this.props.spacing);
 
 		// Column gutters are shared between right and left image
 		const columnWidth = (width / nColumns) - (gutterSize / 2);
